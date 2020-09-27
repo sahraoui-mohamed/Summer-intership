@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="p-3 mb-2 bg-dark text-white">
+<div class="container">
+    <div class="p-3 mb-2 bg-light text-dark">
+    <h1>Bienvenue dans la simulation</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="register()">
+        <div class="form-group">
+            
+            <label for="exampleInputachat">Montant de l'achat (Euro)</label>
+            <input type="number" class="form-control" id="exampleInputachat" (keyup)="getValachat($event.target.value)" name="montantAchat" aria-describedby="montantAchat" formControlName="montantAchat">
+            <div *ngIf="montantAchat.touched && montantAchat.invalid">
+                <small *ngIf="montantAchat.errors.required" class="form-text text-danger">number required</small>
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputapport">Apport carte bancaire (Euro)</label>
+            <input type="number" class="form-control" id="exampleInputapport" (keyup)="getValapport($event.target.value)" name="apport" aria-describedby="apport" formControlName="apport">
+            <div *ngIf="apport.touched && apport.invalid">
+                <small *ngIf="apport.errors.required" class="form-text text-danger">number required</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputmontant">Montant à financer (Euro):  </label>
+            <p>{{montantVal}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputproduit">Produit à financer</label>
+            <form [formGroup]="produitForm">
+                <select formControlName="produitControl">
+                  <option [value]="produit" *ngFor="let produit of produits">{{produit}}</option>
+                </select>
+            </form>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputmois">Quelle est la durée souhaitée pour le rembourssement (Mois)</label>
+            <tr>
+                <td><input type="range" name="rangeInput" min="4" max="36" (change)="updateTextInput($event.target.value)" value="{{valeur}}"></td>
+                <th><span>{{valeur}} mois</span></th>
+            </tr>          
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInput">Montant à payer chaque mois (Euro):  </label>
+            <p>{{montantmois}}</p>
+        </div> 
+
+
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">submit</button>
+    </form>
+    </div>
+</div>
+</div>

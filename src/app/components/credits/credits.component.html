@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="generic-container">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      
+      <h1>Crédit détails</h1>
+      <div class="tablecontainer">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>montantAchat</th>
+            <th>apport</th>
+            <th>montantaFinancier</th>
+            <th>produit</th>
+            <th>dureeRembourssement</th>
+            <th>mensualitePaye</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let credit of credits">
+            <td><span>{{credit.montantAchat}}</span></td>
+            <td><span>{{credit.apport}}</span></td>
+            <td><span>{{credit.montantaFinancier}}</span></td>
+            <td><span>{{credit.produit}}</span></td>
+            <td><span>{{credit.dureeRembourssement}}</span></td>
+            <td><span>{{credit.mensualitePaye}}</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

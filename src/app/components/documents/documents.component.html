@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="p-3 mb-2 bg-dark text-white">
+    <div class="container">
+        <div class="p-3 mb-2 bg-light text-dark">
+            <form [formGroup]="documentForm" (ngSubmit)="passer()">
+                <h1>Vérification des documents</h1>
+                <div class="custom-control custom-switch form-group" >
+                    <input type="checkbox" class="custom-control-input" name="inputCheckbox1" aria-describedby="inputCheckbox1" formControlName="inputCheckbox1" id="customSwitch1" unchecked>
+                    <label class="custom-control-label" for="customSwitch1">Carte d'identité</label>
+                </div>
+                <div class="custom-control custom-switch form-group">
+                    <input type="checkbox" class="custom-control-input" name="inputCheckbox2" aria-describedby="inputCheckbox2" formControlName="inputCheckbox2" id="customSwitch2" unchecked>
+                    <label class="custom-control-label" for="customSwitch2">Identité bancaire</label>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary" [routerLink]="['/login']">J'accepte</button>
+
+            </form>
+        
+
+        </div>
+
+    </div>
+</div>
+
+

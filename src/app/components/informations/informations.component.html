@@ -1,0 +1,170 @@
+<app-header></app-header>
+<div class="p-3 mb-2 bg-dark text-white">
+    <div class="container">
+            <div class="p-3 mb-2 bg-light text-dark">
+                <form class="row"  [formGroup]="loginForm5">
+                    <div class="form-group col">
+                        <h1>Carte d'identité première face</h1>                  
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" [(ngModel)]="imageName1" (change)="onFileChanged1($event)" name="justificationcin" aria-describedby="justificationcin" formControlName="justificationcin">
+                    </div>
+                    <div class="form-group col">
+                        <h1>Carte d'identité deuxième face</h1>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile2" [(ngModel)]="imageName2" (change)="onFileChanged2($event)" name="justificationrib" aria-describedby="justificationrib" formControlName="justificationrib">
+                    </div>
+                </form>
+                <div class="row"> 
+                    <div class="col-md-6 form-group col">
+                        <input type="button" (click)="onUpload()" value="upload">
+                    </div>
+                    <div class="col-md-6 form-group col">
+                        <input type="button" (click)="onUpload2()" value="upload">
+                    </div>  
+                     
+                </div>
+                <div class="col-md-6 form-group col">
+                    <input type="button" (click)="getImage()" value="OCR">
+                </div>
+            </div>
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h1>Emprunteur</h1>       
+                <form [formGroup]="loginForm4">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <td *ngFor="let info of info1; last as isLast">
+                                    <label for="Nom" *ngIf="isLast">Nom</label>
+                                    <tr class="form-control" id="Nom" *ngIf="isLast" name="Nom" aria-describedby="Nom" formControlName="Nom"><span>{{info.nom}}</span></tr>
+                                </td>
+                            </div>
+                            <div class="col">
+                                <td *ngFor="let info of info1; last as isLast">
+                                    <label for="Prénom" *ngIf="isLast">Prénom</label>
+                                    <tr class="form-control" id="Prénom" *ngIf="isLast"><span>{{info.prenom}}</span></tr>
+                                </td>
+                            </div>  
+                        </div>                 
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <td *ngFor="let info of info1; last as isLast">
+                                    <label for="inputEmail4" *ngIf="isLast">CIN</label>
+                                    <tr class="form-control" id="inputEmail4" *ngIf="isLast"><span>{{info.cin}}</span></tr>
+                                </td>
+                            </div>
+                            <div class="col">
+                                <td *ngFor="let info of info1; last as isLast">
+                                    <label for="inputDate" *ngIf="isLast">Date et lieu de naissance</label>
+                                    <tr class="form-control" id="inputDate" *ngIf="isLast"><span>{{info.date}}</span></tr>
+                                </td>    
+                            </div>  
+                        </div>                 
+                    </div>
+                    <div class="form-group">
+                        <td *ngFor="let infoo of info2; last as isLast">
+                            <label for="inputAddress" *ngIf="isLast">Address</label>
+                            <tr class="form-control" id="inputAddress" *ngIf="isLast"><span>{{infoo.adresse}}</span></tr>
+                        </td>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <td *ngFor="let infoo of info2; last as isLast">
+                                <label for="inputVille" *ngIf="isLast">Ville</label>
+                                <tr class="form-control" id="inputVille" *ngIf="isLast"><span>{{infoo.ville}}</span></tr>
+                            </td>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <td *ngFor="let infoo of info2; last as isLast">
+                                <label for="inputCodePostale" *ngIf="isLast">Code postale</label>
+                                <tr class="form-control" id="inputCodePostale" *ngIf="isLast"><span>{{infoo.code}}</span></tr>
+                            </td>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputPays">Pays</label>
+                            <form [formGroup]="paysForm">
+                                <select formControlName="paysControl">
+                                  <option [value]="pay" *ngFor="let pay of pays">{{pay}}</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="p-3 mb-2 bg-light text-dark">
+                <form [formGroup]="loginForm3">
+                    <div class="form-group row">
+                        <label for="inputRib" class="col-sm-2 col-form-label">RIB</label>
+                        <div class="col-sm-4">
+                        <input type="text" class="form-control" id="inputRib" placeholder="RIB" [textMask]="{mask: ribb}" name="inputRib" aria-describedby="inputRib" formControlName="inputRib">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMontant" class="col-sm-2 col-form-label">Montant de crédit</label>
+                        <div class="col-sm-4">
+                            <tr *ngFor="let credit of credits; last as isLast">
+                                <td *ngIf="isLast"><span>{{credit.montantAchat}}</span></td>
+                            </tr>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h1>Votre emploi:</h1>
+                <form [formGroup]="loginForm2">
+                    <div class="form-group row">
+                        <label for="Profession" class="col-sm-2 col-form-label">Profession</label>
+                        <div class="col-sm-4">
+                        <input type="text" class="form-control" id="Profession" placeholder="Profession" name="Profession" aria-describedby="Profession" formControlName="Profession">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Depuis" class="col-sm-2 col-form-label">Depuis</label>
+                        <div class="col-sm-4">
+                        <input type="text" class="form-control" id="Depuis" placeholder="xx/xx/xxxx" [textMask]="{mask: dateMask}" name="Depuis" aria-describedby="Depuis" formControlName="Depuis">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Télephone" class="col-sm-2 col-form-label">Télephone</label>
+                        <div class="col-sm-4">
+                        <input type="text" class="form-control" id="Télephone" placeholder="Télephone" name="Télephone" [textMask]="{mask: telephoneMask}" aria-describedby="Télephone" formControlName="Télephone">
+                        </div>
+                    </div>
+                </form>
+            </div>   
+            <div class="p-3 mb-2 bg-light text-dark">
+                <h1>Vos revenus et charges mensuels :</h1>
+                <form  [formGroup]="loginForm1" (ngSubmit)="submit()">
+                    <div class="form-group row">
+                        <label for="revenues" class="col-sm-2 col-form-label">Revenues nets</label>
+                        <div class="col-sm-4">
+                        <input type="number" class="form-control" id="revenues" placeholder="Revenues nets" name="adresRevenuess" aria-describedby="adresRevenuess" formControlName="adresRevenuess">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Autres" class="col-sm-2 col-form-label">Autres revenues</label>
+                        <div class="col-sm-4">
+                        <input type="number" class="form-control" id="Autres" placeholder="Autres revenues" name="Autres" aria-describedby="Autres" formControlName="Autres">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Loyer" class="col-sm-2 col-form-label">Loyer/prét immobilier</label>
+                        <div class="col-sm-4">
+                        <input type="number" class="form-control" id="Loyer" placeholder="Loyer/prét immobilier" name="immobilier" aria-describedby="immobilier" formControlName="immobilier">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Crédits" class="col-sm-2 col-form-label">Crédits en cours</label>
+                        <div class="col-sm-4">
+                        <input type="number" class="form-control" id="Crédits" placeholder="Crédits en cours" name="creditencour" aria-describedby="creditencour" formControlName="creditencour">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                        
+                        </div>
+                    </div> 
+                </form>
+            </div>
+    </div>
+</div>

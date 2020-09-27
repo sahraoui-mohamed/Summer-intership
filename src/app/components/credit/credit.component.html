@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="p-3 mb-2 bg-dark text-white">
+    <div class="container">
+        <div class="p-3 mb-2 bg-light text-dark">
+        
+        <h1>Crédit détails</h1>
+        <div class="tablecontainer">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">MontantAchat</th>
+                <td *ngIf="isLast"><span>{{credit.montantAchat}}</span></td>
+              </tr>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">Apport</th>
+                <td *ngIf="isLast"><span>{{credit.apport}}</span></td>
+              </tr>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">MontantaFinancier</th>
+                <td *ngIf="isLast"><span>{{credit.montantaFinancier}}</span></td>
+              </tr>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">Produit</th>
+                <td *ngIf="isLast"><span>{{credit.produit}}</span></td>
+              </tr>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">DureeRembourssement</th>
+                <td *ngIf="isLast"><span>{{credit.dureeRembourssement}}</span></td>
+              </tr>
+              <tr *ngFor="let credit of credits; last as isLast">
+                <th scope="row" *ngIf="isLast">MensualitePaye</th>
+                <td *ngIf="isLast"><span>{{credit.mensualitePaye}}</span></td>
+              </tr>
+          </tbody>
+          </table>
+          <button class="btn btn-primary" [routerLink]="['/informations']">Suivant</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
